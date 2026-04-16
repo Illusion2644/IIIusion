@@ -2,7 +2,17 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow"> 
+    <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div id="loading" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;">
+    <div style="color:#4a9eff;font-size:1.2rem;">
+        ███ 加载实验档案中... <span class="blink">█</span>
+    </div>
+</div>
+<script>
+window.addEventListener('load', function() {document.getElementById('loading').style.display = 'none';});
+</script>
     <title>Omega-1 实验档案 | Project Omega-1 File</title>
     <style>
         * {
@@ -353,6 +363,10 @@
             <p>
                 <span class="lang-en">This document contains RESTRICTED information. Unauthorized access is prohibited.</span>
                 <span class="lang-zh" style="display: none;">本文档包含受限信息。未经授权禁止访问。</span>
+                <!-- 在页面底部添加 -->
+<div style="text-align:center;font-size:0.8rem;color:#666;margin-top:20px;">
+    <span id="visit-count">访问次数: 加载中...</span>
+</div>
             </p>
         </div>
     </div>
@@ -420,6 +434,13 @@
                 `;
             });
         });
-    </script>
-</body>
-</html>
+        
+<script>
+// 记录访问
+let visits = localStorage.getItem('omega1_visits') || 0;
+visits = parseInt(visits) + 1;
+localStorage.setItem('omega1_visits', visits);
+document.getElementById('visit-count').textContent = `访问次数: ${visits}`;
+</script>
+
+
